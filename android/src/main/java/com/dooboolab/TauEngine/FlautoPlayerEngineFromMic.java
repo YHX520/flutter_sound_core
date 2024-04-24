@@ -28,6 +28,7 @@ import android.media.AudioTrack;
 import android.os.Build;
 import android.os.SystemClock;
 import android.media.MediaRecorder;
+import android.view.View;
 
 import java.lang.Thread;
 
@@ -235,6 +236,10 @@ class FlautoPlayerEngineFromMic extends FlautoPlayerEngineInterface
 	}
 
 
+	@Override
+	void _startPlayer(String path, int sampleRate, int numChannels, int blockSize, FlautoPlayer theSession, View.OnClickListener clickListener) throws Exception {
+
+	}
 
 	void _startPlayer
 		(

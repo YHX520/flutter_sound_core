@@ -50,6 +50,11 @@ class FlautoMediaPlayer extends FlautoPlayerEngineInterface
 		mediaPlayer.prepareAsync(); // Maybe too early. Should be after start()
 	}
 
+	@Override
+	void _startPlayer(String path, int sampleRate, int numChannels, int blockSize, FlautoPlayer theSession) throws Exception {
+
+	}
+
 	void _play()
 	{
 		mediaPlayer.start();
