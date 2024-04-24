@@ -19,6 +19,8 @@ package com.dooboolab.TauEngine;
  */
 
 import android.media.MediaPlayer;
+import android.view.View;
+
 
 //-------------------------------------------------------------------------------------------------------------
 
@@ -29,7 +31,7 @@ class FlautoMediaPlayer extends FlautoPlayerEngineInterface
 	MediaPlayer mediaPlayer = null;
 	FlautoPlayer flautoPlayer;
 
-	void _startPlayer(String path, int sampleRate, int numChannels, int blockSize, FlautoPlayer theSession) throws Exception
+	void _startPlayer(String path, int sampleRate, int numChannels, int blockSize, FlautoPlayer theSession, View.OnClickListener action) throws Exception
  	{
  		mediaPlayer = new MediaPlayer();
 		if (path == null)
@@ -39,7 +41,10 @@ class FlautoMediaPlayer extends FlautoPlayerEngineInterface
 		this.flautoPlayer = theSession;
 		mediaPlayer.setDataSource(path);
 		final String pathFile = path;
-		mediaPlayer.setOnPreparedListener(mp -> {flautoPlayer.play(); flautoPlayer.onPrepared();});
+		mediaPlayer.setOnPreparedListener(mp -> {
+			action.onClick(null);
+			flautoPlayer.play();
+			flautoPlayer.onPrepared();});
 		mediaPlayer.setOnCompletionListener(mp -> flautoPlayer.onCompletion());
 		mediaPlayer.setOnErrorListener(flautoPlayer);
 		mediaPlayer.prepareAsync(); // Maybe too early. Should be after start()

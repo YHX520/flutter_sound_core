@@ -22,6 +22,7 @@ import android.media.MediaPlayer;
 import android.media.PlaybackParams;
 import android.os.Build;
 import android.util.Log;
+import android.view.View;
 
 //-------------------------------------------------------------------------------------------------------------
 
@@ -36,7 +37,7 @@ class FlautoPlayerMedia extends FlautoPlayerEngineInterface
 		this.flautoPlayer = theSession;
 	}
 
-	void _startPlayer(String path,  int sampleRate, int numChannels, int blockSize, FlautoPlayer theSession) throws Exception
+	void _startPlayer(String path, int sampleRate, int numChannels, int blockSize, FlautoPlayer theSession, View.OnClickListener action) throws Exception
  	{
 		this.flautoPlayer = theSession;
  		mediaPlayer = new MediaPlayer();
@@ -46,7 +47,9 @@ class FlautoPlayerMedia extends FlautoPlayerEngineInterface
 		}
 		mediaPlayer.setDataSource(path);
 		final String pathFile = path;
-		mediaPlayer.setOnPreparedListener(mp -> {flautoPlayer.play(); flautoPlayer.onPrepared();});
+		mediaPlayer.setOnPreparedListener(mp -> {
+			action.onClick(null);
+			flautoPlayer.play(); flautoPlayer.onPrepared();});
 		mediaPlayer.setOnCompletionListener(mp -> flautoPlayer.onCompletion());
 		mediaPlayer.setOnErrorListener(flautoPlayer);
 		mediaPlayer.prepareAsync();

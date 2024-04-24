@@ -18,9 +18,12 @@ package com.dooboolab.TauEngine;
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import android.content.DialogInterface;
+import android.view.View;
+
 abstract class FlautoPlayerEngineInterface
 {
-	abstract void _startPlayer(String path, int sampleRate, int numChannels, int blockSize, FlautoPlayer theSession) throws Exception;
+	abstract void _startPlayer(String path, int sampleRate, int numChannels, int blockSize, FlautoPlayer theSession, View.OnClickListener clickListener) throws Exception;
 	abstract void _stop();
 	abstract void _pausePlayer() throws Exception;
 	abstract void _resumePlayer() throws Exception;

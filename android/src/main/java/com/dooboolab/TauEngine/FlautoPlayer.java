@@ -25,6 +25,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import android.media.AudioFocusRequest;
+import android.view.View;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -157,8 +158,13 @@ public class FlautoPlayer  implements MediaPlayer.OnErrorListener
 		try
 		{
 			player = new FlautoPlayerEngineFromMic(this);
-			player._startPlayer(null,  sampleRate, numChannels, blockSize, this);
-			play();
+			player._startPlayer(null,  sampleRate, numChannels, blockSize, this, new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					play();
+				}
+			});
+
 		}
 		catch ( Exception e )
 		{
@@ -200,8 +206,13 @@ public class FlautoPlayer  implements MediaPlayer.OnErrorListener
 			}
 			String path = Flauto.getPath(fromURI);
 
-			player._startPlayer(path,  sampleRate, numChannels, blockSize, this);
-			play();
+			player._startPlayer(path, sampleRate, numChannels, blockSize, this, new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					play();
+				}
+			});
+
 		}
 		catch ( Exception e )
 		{
